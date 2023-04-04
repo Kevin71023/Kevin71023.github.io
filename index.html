@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  </head>
+  <body>
+    <h1>Simple Chat</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="message-input">
+    <button id="send-button">Send</button>
+
+    <script>
+      // Initialize Firebase
+      const firebaseConfig = {
+    apiKey: "AIzaSyCzVQGRzb4eYZpgWJUzNt06WvgRp1WgELc",
+    authDomain: "tactile-cinema-369815.firebaseapp.com",
+    projectId: "tactile-cinema-369815",
+    storageBucket: "tactile-cinema-369815.appspot.com",
+    messagingSenderId: "23909386543",
+    appId: "1:23909386543:web:cbdb49aafc81313140b9da",
+    measurementId: "G-K793JQPSGW"
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      // Get a reference to the messages collection in the database
+      const messagesRef = firebase.database().ref("messages");
+
+      // Display the messages in the chat box
+      messagesRef.on("child_added", (snapshot) => {
+        const message = snapshot.val();
+        const messageElement = document.createElement("div");
+        messageElement.innerText = message.text;
+        document.getElementById("chat-box").appendChild(messageElement);
+
+        // Delete the message after 30 seconds
+        setTimeout(() => {
+          messageElement.remove();
+          snapshot.ref.remove();
+        }, 5000);
+      });
+
+      // Send a message when the send button is clicked
+      document.getElementById("send-button").addEventListener("click", () => {
+        const messageInput = document.getElementById("message-input");
+        const messageText = messageInput.value;
+        const newMessageRef = messagesRef.push();
+        newMessageRef.set({
+          text: messageText,
+          timestamp: firebase.database.ServerValue.TIMESTAMP,
+        });
+        messageInput.value = "";
+      });
+    </script>
+  </body>
+</html>
