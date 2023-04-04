@@ -1,0 +1,42 @@
+p{
+padding:0;
+margin-top:-10px;
+text-align: center;
+font-size:30px;
+font-family: sans-serif;
+box-sizing: border-box;
+border-radius: 4px solid #555;
+position:absolute;
+margin-left: -0.25%;
+text-shadow: 0 20px 30px rgba(0,0,0, .8);
+border-radius: 10px;
+}
+body{
+    background:#fff8dc;
+
+}
+.Discord{
+    padding:1000;
+    margin:0;
+    width:470px;
+    height:290px;
+    text-align: left;
+    top:400px;
+    left:400px;
+    position:relative;
+    border:3px solid;
+    border-radius:-10px;
+    transition-duration:.60s;
+    background:url(Discord.jpg);
+    background-size: cover;
+	  background-position:relative;
+
+}
+.Discord{
+  box-shadow: 0 0px 60px rgba(0,0,0,.5);
+
+}
+.Discord:hover{
+  box-shadow: 0 5px 10px rgba(0,0,0,.5);
+  transform: scale(.95);
+}
