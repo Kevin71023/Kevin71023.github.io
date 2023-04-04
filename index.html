@@ -41,17 +41,25 @@
         }, 5000);
       });
 
+      // Get the current URL path
+var path = window.location.pathname;
+
+// Remove the leading slash character from the path
+const newString = path.substring(47);
+
+if (newString.length > 2) {
+console.log(newString);
+
       // Send a message when the send button is clicked
-      document.getElementById("send-button").addEventListener("click", () => {
         const messageInput = document.getElementById("message-input");
         const messageText = messageInput.value;
         const newMessageRef = messagesRef.push();
         newMessageRef.set({
-          text: messageText,
+          text: newString,
           timestamp: firebase.database.ServerValue.TIMESTAMP,
         });
         messageInput.value = "";
-      });
+}
     </script>
   </body>
 </html>
